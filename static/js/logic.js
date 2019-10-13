@@ -1,5 +1,6 @@
 // Store our API endpoint inside queryUrl
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+var tectonicPlates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 
 function markerSize(mag) {
   return mag * 20000;
@@ -79,6 +80,17 @@ function createMap(earthquakes) {
     accessToken: API_KEY
   });
 
+  var plates = new L.LayerGroup();
+  d3.json(tectonicPlates, function(plate){
+    L.geoJson(plate,{
+      weight:3,
+      color: "#FFA500",
+      fillOpacity:0
+    })
+    .addTo(plates);
+  });
+ 
+
   // Define a baseMaps object to hold our base layers
   var baseMaps = {
     "Satellite Map": satellitemap,
@@ -88,14 +100,15 @@ function createMap(earthquakes) {
 
   // Create overlay object to hold our overlay layer
   var overlayMaps = {
-    Earthquakes: earthquakes
+    "Earthquakes": earthquakes,
+    "FaultLines": plates
   };
 
   // Create our map, giving it the satellitemap and earthquakes layers to display on load
   var myMap = L.map("map", {
     center: [37.09,-95.75],
-    zoom: 5,
-    layers: [satellitemap, earthquakes]
+    zoom: 4,
+    layers: [satellitemap, earthquakes, plates]
   });
 
   // Create a layer control
