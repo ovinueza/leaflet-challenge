@@ -19,7 +19,7 @@ Add tectonic plates to the graph from [this repository](https://github.com/fraxe
 ## Result
 
 <p align="center">
-  <img width="660" height="500" src="https://github.com/ovinueza/leaflet-challenge/blob/master/Images/5-Advanced.png">
+  <img width="860" height="500" src="https://github.com/ovinueza/leaflet-challenge/blob/master/Images/5-Advanced.png">
 </p>
 
 
