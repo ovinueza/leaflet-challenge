@@ -1,2 +1,3 @@
-# leaflet-challenge
+# Leaflet-challenge
+
 USGS data visualization with Leaflet
